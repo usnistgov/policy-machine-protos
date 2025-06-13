@@ -1,0 +1,154 @@
+syntax = "proto3";
+
+import "v1/model.proto";
+
+option java_multiple_files = true;
+option java_package = "gov.nist.csd.pm.proto.cmd";
+
+package gov.nist.csd.pm.proto.cmd;
+
+message AdminCommand {
+  oneof cmd {
+    CreatePolicyClassCmd create_policy_class_cmd = 1;
+    CreateUserAttributeCmd create_user_attribute_cmd = 2;
+    CreateUserCmd create_user_cmd = 3;
+    CreateObjectAttributeCmd create_object_attribute_cmd = 4;
+    CreateObjectCmd create_object_cmd = 5;
+    SetNodePropertiesCmd set_node_properties_cmd = 6;
+    DeleteNodeCmd delete_node_cmd = 7;
+    AssignCmd assign_cmd = 8;
+    DeassignCmd deassign_cmd = 9;
+    AssociateCmd associate_cmd = 10;
+    DissociateCmd dissociate_cmd = 11;
+
+    CreateProhibitionCmd create_prohibition_cmd = 12;
+    DeleteProhibitionCmd delete_prohibition_cmd = 13;
+
+    DeleteObligationCmd delete_obligation_cmd = 14;
+
+    DeleteAdminOperationCmd delete_admin_operation_cmd = 15;
+
+    SetResourceOperationsCmd set_resource_operations_cmd = 16;
+    DeleteAdminRoutineCmd delete_admin_routine_cmd = 17;
+
+    ExecutePMLCmd execute_pml_cmd = 18;
+    SerializeCmd serialize_cmd = 19;
+    DeserializeCmd deserialize_cmd = 20;
+
+    GenericAdminCmd generic_admin_cmd = 21;
+  }
+}
+
+message CreatePolicyClassCmd {
+  string name = 1;
+}
+
+message CreateUserAttributeCmd {
+  string name = 1;
+  repeated int64 descendants = 2;
+}
+
+message CreateObjectAttributeCmd {
+  string name = 1;
+  repeated int64 descendants = 2;
+}
+
+message CreateUserCmd {
+  string name = 1;
+  repeated int64 descendants = 2;
+}
+
+message CreateObjectCmd {
+  string name = 1;
+  repeated int64 descendants = 2;
+}
+
+message SetNodePropertiesCmd {
+  int64 id = 1;
+  map<string, string> properties = 2;
+}
+
+message DeleteNodeCmd {
+  int64 id = 1;
+}
+
+message AssignCmd {
+  int64 ascendant_id = 1;
+  repeated int64 descendant_ids = 2;
+}
+
+message DeassignCmd {
+  int64 ascendant_id = 1;
+  repeated int64 descendant_ids = 2;
+}
+
+message AssociateCmd {
+  int64 ua_id = 1;
+  int64 target_id = 2;
+  repeated string arset = 3;
+}
+
+message DissociateCmd {
+  int64 ua_id = 1;
+  int64 target_id = 2;
+}
+
+message DeleteProhibitionCmd {
+  string name = 1;
+}
+
+
+message CreateProhibitionCmd {
+  string name = 1;
+  oneof subject {
+    int64 node_id = 2;
+    string process = 3;
+  }
+  repeated string arset = 4;
+  bool intersection = 5;
+  repeated ContainerCondition container_conditions = 6;
+
+  message ContainerCondition {
+    int64 container_id = 1;
+    bool complement = 2;
+  }
+}
+
+message DeleteObligationCmd {
+  string name = 1;
+}
+
+message DeleteAdminOperationCmd {
+  string name = 1;
+}
+
+message SetResourceOperationsCmd {
+  repeated string operations = 1;
+}
+
+message DeleteAdminRoutineCmd {
+  string name = 1;
+}
+
+message ExecutePMLCmd {
+  string pml = 1;
+}
+
+message SerializeCmd {
+  SerializationFormat format = 1;
+}
+
+message DeserializeCmd {
+  string serialized = 1;
+  SerializationFormat format = 2;
+}
+
+enum SerializationFormat {
+  JSON = 0;
+  // add additional serialization formats here
+}
+
+message GenericAdminCmd {
+  string opName = 1;
+  gov.nist.csd.pm.proto.model.ValueMap args = 2;
+}

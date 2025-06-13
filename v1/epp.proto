@@ -1,32 +1,50 @@
 syntax = "proto3";
-import "v1/event.proto";
 import "v1/model.proto";
+import "google/protobuf/empty.proto";
 
 option java_multiple_files = true;
 option java_package = "gov.nist.csd.pm.epp.proto";
 
 package gov.nist.csd.pm.epp.proto;
 
-message EventContextProto {
+// EPPService provides methods to process events.
+service EPPService {
+  // Process policy events.
+  rpc processPolicyEvent(PolicyEventContext) returns (google.protobuf.Empty) {}
+  // Process generic events.
+  rpc processGenericEvent(GenericEventContext) returns (google.protobuf.Empty) {}
+}
+
+// PolicyEventContext models the event context for all policy events.
+message PolicyEventContext {
+  // The user that triggered the event.
   string user = 1;
-  string process = 2;
-  string opName = 3;
-  repeated EventContextArg args = 4;
+  // The process the user used to trigger the event.
+  optional string process = 2;
+  // The name of the policy operation.
+  string op_name = 3;
+  // The args related to the operation.
+  repeated PolicyEventContextArg args = 4;
 }
 
-message EPPResponse {
-  uint64 startRevision = 1;
-  repeated gov.nist.csd.pm.pdp.proto.event.PMEvent events = 2;
-}
-
-service EPP {
-  rpc processEvent(EventContextProto) returns (EPPResponse) {}
-}
-
-message EventContextArg {
+// PolicyEventContextArg represents a valid Arg for a policy event context.
+message PolicyEventContextArg {
+  // The name of the associated operation parameter.
   string name = 1;
+  // The value of the arg. Either a single node name or a list of Node names.
+  // The EPP expects names not IDs.
   oneof value {
-    string stringValue = 2;
-    gov.nist.csd.pm.pdp.proto.model.StringList listValue = 3;
+    // A single node name.
+    string node_name = 2;
+    // A list of node names.
+    gov.nist.csd.pm.proto.model.StringList node_name_list = 3;
   }
+}
+
+// GenericEventContext models the event context for any possible non policy events.
+message GenericEventContext {
+  // The name of the event.
+  string name = 1;
+  // The args related to the event.
+  gov.nist.csd.pm.proto.model.ValueMap args = 2;
 }
