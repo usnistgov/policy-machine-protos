@@ -1,19 +1,19 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "gov.nist.csd.pm.proto.model";
+option java_package = "gov.nist.csd.pm.proto.v1.model";
 
-package gov.nist.csd.pm.proto.model;
+package gov.nist.csd.pm.proto.v1.model;
 
 message Node {
   int64 id = 1;
   string name = 2;
   NodeType type = 3;
-  optional gov.nist.csd.pm.proto.model.ValueMap properties = 4;
+  optional gov.nist.csd.pm.proto.v1.model.ValueMap properties = 4;
 }
 
 message NodeList {
-  repeated gov.nist.csd.pm.proto.model.Node nodes = 1;
+  repeated gov.nist.csd.pm.proto.v1.model.Node nodes = 1;
 }
 
 enum NodeType {
@@ -26,8 +26,8 @@ enum NodeType {
 }
 
 message Association {
-  gov.nist.csd.pm.proto.model.Node ua = 1;
-  gov.nist.csd.pm.proto.model.Node target = 2;
+  gov.nist.csd.pm.proto.v1.model.Node ua = 1;
+  gov.nist.csd.pm.proto.v1.model.Node target = 2;
   repeated string arset = 3;
 }
 
@@ -38,7 +38,7 @@ message AssociationList {
 message Prohibition {
   string name = 1;
   oneof subject {
-    gov.nist.csd.pm.proto.model.Node node = 2;
+    gov.nist.csd.pm.proto.v1.model.Node node = 2;
     string process = 3;
   }
   repeated string arset = 4;
@@ -46,18 +46,18 @@ message Prohibition {
   repeated ContainerCondition container_conditions = 6;
 
   message ContainerCondition {
-    gov.nist.csd.pm.proto.model.Node container = 1;
+    gov.nist.csd.pm.proto.v1.model.Node container = 1;
     bool complement = 2;
   }
 }
 
 message ProhibitionList {
-  repeated gov.nist.csd.pm.proto.model.Prohibition prohibitions = 1;
+  repeated gov.nist.csd.pm.proto.v1.model.Prohibition prohibitions = 1;
 }
 
 message Obligation {
   string name = 1;
-  gov.nist.csd.pm.proto.model.Node author = 2;
+  gov.nist.csd.pm.proto.v1.model.Node author = 2;
   string pml = 3;
 }
 

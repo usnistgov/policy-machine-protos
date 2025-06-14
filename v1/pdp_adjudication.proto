@@ -5,25 +5,25 @@ import "v1/model.proto";
 import "v1/cmd.proto";
 
 option java_multiple_files = true;
-option java_package = "gov.nist.csd.pm.pdp.proto.adjudication";
+option java_package = "gov.nist.csd.pm.proto.v1.adjudication";
 
-package gov.nist.csd.pm.pdp.proto.adjudication;
+package gov.nist.csd.pm.proto.v1.adjudication;
 
 // AdminAdjudicationService adjudicates administrative operations and returns a Value if the requested operation returns one.
 // The commands provided will be executed in order as a single transaction. Any error will cause the entire transaction
 // to be rolled back.
 service AdminAdjudicationService {
-  rpc AdjudicateAdminOperation(AdminOperationCmd) returns (gov.nist.csd.pm.proto.model.Value);
+  rpc AdjudicateAdminOperation(AdminOperationCmd) returns (gov.nist.csd.pm.proto.v1.model.Value);
 }
 
 // ResourceAdjudicationService adjudicates resource commands and returns a Value if the provided command returns one.
 service ResourceAdjudicationService {
-  rpc AdjudicateResourceOperation(ResourceOperationCmd) returns (gov.nist.csd.pm.proto.model.Node) {}
+  rpc AdjudicateResourceOperation(ResourceOperationCmd) returns (gov.nist.csd.pm.proto.v1.model.Node) {}
 }
 
 // AdminOperationCmd stores an array of AdminCommands.
 message AdminOperationCmd {
-  repeated gov.nist.csd.pm.proto.cmd.AdminCommand commands = 1;
+  repeated gov.nist.csd.pm.proto.v1.cmd.AdminCommand commands = 1;
 }
 
 // ResourceOperationCmd stores an operation name and the operation target node, identified either by its name or ID.

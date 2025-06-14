@@ -3,9 +3,9 @@ syntax = "proto3";
 import "v1/model.proto";
 
 option java_multiple_files = true;
-option java_package = "gov.nist.csd.pm.proto.cmd";
+option java_package = "gov.nist.csd.pm.proto.v1.cmd";
 
-package gov.nist.csd.pm.proto.cmd;
+package gov.nist.csd.pm.proto.v1.cmd;
 
 message AdminCommand {
   oneof cmd {
@@ -150,5 +150,5 @@ enum SerializationFormat {
 
 message GenericAdminCmd {
   string opName = 1;
-  gov.nist.csd.pm.proto.model.ValueMap args = 2;
+  gov.nist.csd.pm.proto.v1.model.ValueMap args = 2;
 }
