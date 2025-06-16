@@ -38,7 +38,7 @@ service PolicyQueryService {
   // obligation queries
   rpc GetObligations(google.protobuf.Empty) returns (gov.nist.csd.pm.proto.v1.model.ObligationList);
   rpc GetObligation(GetByNameQuery) returns (gov.nist.csd.pm.proto.v1.model.Obligation);
-  rpc GetObligationsByAuthor(GetObligationByAuthorQuery) returns (gov.nist.csd.pm.proto.v1.model.Obligation);
+  rpc GetObligationsByAuthor(GetObligationByAuthorQuery) returns (gov.nist.csd.pm.proto.v1.model.ObligationList);
 
   // operation queries
   rpc GetResourceOperations(google.protobuf.Empty) returns (gov.nist.csd.pm.proto.v1.model.StringList);
