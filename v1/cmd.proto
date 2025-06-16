@@ -32,10 +32,9 @@ message AdminCommand {
     DeleteAdminRoutineCmd delete_admin_routine_cmd = 17;
 
     ExecutePMLCmd execute_pml_cmd = 18;
-    SerializeCmd serialize_cmd = 19;
-    DeserializeCmd deserialize_cmd = 20;
+    DeserializeCmd deserialize_cmd = 19;
 
-    GenericAdminCmd generic_admin_cmd = 21;
+    GenericAdminCmd generic_admin_cmd = 20;
   }
 }
 
@@ -134,18 +133,9 @@ message ExecutePMLCmd {
   string pml = 1;
 }
 
-message SerializeCmd {
-  SerializationFormat format = 1;
-}
-
 message DeserializeCmd {
   string serialized = 1;
-  SerializationFormat format = 2;
-}
-
-enum SerializationFormat {
-  JSON = 0;
-  // add additional serialization formats here
+  gov.nist.csd.pm.proto.v1.model.SerializationFormat format = 2;
 }
 
 message GenericAdminCmd {

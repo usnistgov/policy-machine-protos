@@ -71,18 +71,23 @@ message StringList {
 
 message Value {
   oneof data {
-    int64 int64Value = 1;
-    string stringValue = 2;
-    bool boolValue = 3;
-    ValueList listValue = 5;
-    ValueMap argMap = 6;
+    int64 int64_value= 1;
+    string string_value = 2;
+    bool bool_value = 3;
+    ValueList list_value = 5;
+    ValueMap map_value = 6;
   }
 }
 
 message ValueList {
-  repeated Value args = 1;
+  repeated Value list = 1;
 }
 
 message ValueMap {
-  map<string, Value> args = 1;
+  map<string, Value> map = 1;
+}
+
+enum SerializationFormat {
+  JSON = 0;
+  // add additional serialization formats here
 }

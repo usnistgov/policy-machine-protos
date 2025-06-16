@@ -67,6 +67,9 @@ service PolicyQueryService {
   rpc SelfComputeAdjacentAscendantPrivileges(SelfAccessWithRootQuery) returns (NodePrivilegeList);
   rpc SelfComputeAdjacentDescendantPrivileges(SelfAccessWithRootQuery) returns (NodePrivilegeList);
   rpc SelfComputePersonalObjectSystem(google.protobuf.Empty) returns (NodePrivilegeList);
+
+  // Serialization
+  rpc Serialize(SerializeQuery) returns (google.protobuf.StringValue);
 }
 
 message IdOrNameQuery {
@@ -289,3 +292,7 @@ message MapType {
 }
 
 message AnyType {}
+
+message SerializeQuery {
+  gov.nist.csd.pm.proto.v1.model.SerializationFormat format = 1;
+}
