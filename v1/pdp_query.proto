@@ -14,7 +14,7 @@ service PolicyQueryService {
   // graph queries
   rpc NodeExists(IdOrNameQuery) returns (google.protobuf.BoolValue);
   rpc GetNode(IdOrNameQuery) returns (gov.nist.csd.pm.proto.v1.model.Node);
-  rpc GetNodeId(IdOrNameQuery) returns (google.protobuf.BoolValue);
+  rpc GetNodeId(IdOrNameQuery) returns (google.protobuf.Int64Value);
   rpc SearchNodes(SearchQuery)  returns (gov.nist.csd.pm.proto.v1.model.NodeList);
   rpc GetPolicyClasses(google.protobuf.Empty) returns (gov.nist.csd.pm.proto.v1.model.NodeList);
   rpc GetAdjacentDescendants(GetAdjacentAssignmentsQuery) returns (gov.nist.csd.pm.proto.v1.model.NodeList);
