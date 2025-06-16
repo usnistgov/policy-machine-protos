@@ -9,10 +9,11 @@ option java_package = "gov.nist.csd.pm.proto.v1.adjudication";
 
 package gov.nist.csd.pm.proto.v1.adjudication;
 
-// AdminAdjudicationService adjudicates administrative operations and returns a Value if the requested operation returns one.
-// The commands provided will be executed in order as a single transaction. Any error will cause the entire transaction
-// to be rolled back.
+// AdminAdjudicationService adjudicates administrative commands in order as a single transaction. Any error will cause
+// the entire transaction to be rolled back.
 service AdminAdjudicationService {
+  // Adjudicate the given admin commands and return a list of the responses in the same order. Commands that do not return
+  // a value will have an empty value in the response.
   rpc AdjudicateAdminCmd(AdminCmdRequest) returns (AdminCmdResponse);
 }
 
