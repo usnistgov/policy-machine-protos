@@ -81,7 +81,7 @@ message IdOrNameQuery {
 
 message SearchQuery {
   gov.nist.csd.pm.proto.v1.model.NodeType type = 1;
-  map<string, gov.nist.csd.pm.proto.v1.model.Value> properties = 2;
+  map<string, string> properties = 2;
 }
 
 message GetAdjacentAssignmentsQuery {
