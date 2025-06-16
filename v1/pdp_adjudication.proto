@@ -13,7 +13,7 @@ package gov.nist.csd.pm.proto.v1.adjudication;
 // The commands provided will be executed in order as a single transaction. Any error will cause the entire transaction
 // to be rolled back.
 service AdminAdjudicationService {
-  rpc AdjudicateAdminOperation(AdminOperationCmd) returns (gov.nist.csd.pm.proto.v1.model.Value);
+  rpc AdjudicateAdminCmd(AdminCmdRequest) returns (AdminCmdResponse);
 }
 
 // ResourceAdjudicationService adjudicates resource commands and returns a Value if the provided command returns one.
@@ -21,9 +21,14 @@ service ResourceAdjudicationService {
   rpc AdjudicateResourceOperation(ResourceOperationCmd) returns (gov.nist.csd.pm.proto.v1.model.Node) {}
 }
 
-// AdminOperationCmd stores an array of AdminCommands.
-message AdminOperationCmd {
+// AdminCmdRequest stores an array of AdminCommands.
+message AdminCmdRequest {
   repeated gov.nist.csd.pm.proto.v1.cmd.AdminCommand commands = 1;
+}
+
+// AdminCmdResponse store the results of adjudicated AdminCommands.
+message AdminCmdResponse {
+  repeated gov.nist.csd.pm.proto.v1.model.Value results = 1;
 }
 
 // ResourceOperationCmd stores an operation name and the operation target node, identified either by its name or ID.

@@ -80,11 +80,11 @@ message Value {
 }
 
 message ValueList {
-  repeated Value list = 1;
+  repeated Value values = 1;
 }
 
 message ValueMap {
-  map<string, Value> map = 1;
+  map<string, Value> values = 1;
 }
 
 enum SerializationFormat {
