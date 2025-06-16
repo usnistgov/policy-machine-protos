@@ -9,7 +9,7 @@ message Node {
   int64 id = 1;
   string name = 2;
   NodeType type = 3;
-  optional gov.nist.csd.pm.proto.v1.model.ValueMap properties = 4;
+  map<string, string> properties = 4;
 }
 
 message NodeList {
