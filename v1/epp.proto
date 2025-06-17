@@ -19,8 +19,8 @@ service EPPService {
 message PolicyEventContext {
   // The user that triggered the event. Either a user name or set of attributes.
   oneof user {
-    string name = 1;
-    gov.nist.csd.pm.proto.v1.model.StringList attrs = 2;
+    string user_name = 1;
+    gov.nist.csd.pm.proto.v1.model.StringList user_attrs = 2;
   }
   // The process the user used to trigger the event.
   optional string process = 3;
