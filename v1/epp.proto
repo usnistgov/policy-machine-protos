@@ -17,14 +17,17 @@ service EPPService {
 
 // PolicyEventContext models the event context for all policy events.
 message PolicyEventContext {
-  // The user that triggered the event.
-  string user = 1;
+  // The user that triggered the event. Either a user name or set of attributes.
+  oneof user {
+    string name = 1;
+    gov.nist.csd.pm.proto.v1.model.StringList attrs = 2;
+  }
   // The process the user used to trigger the event.
-  optional string process = 2;
+  optional string process = 3;
   // The name of the policy operation.
-  string op_name = 3;
+  string op_name = 4;
   // The args related to the operation.
-  repeated PolicyEventContextArg args = 4;
+  repeated PolicyEventContextArg args = 5;
 }
 
 // PolicyEventContextArg represents a valid Arg for a policy event context.
