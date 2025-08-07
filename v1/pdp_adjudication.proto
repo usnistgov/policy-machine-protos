@@ -35,8 +35,5 @@ message AdminCmdResponse {
 // ResourceOperationCmd stores an operation name and the operation target node, identified either by its name or ID.
 message ResourceOperationCmd {
   string operation = 1;
-  oneof target {
-    int64 id = 2;
-    string name = 3;
-  }
+  gov.nist.csd.pm.proto.v1.model.IdOrName target = 2;
 }

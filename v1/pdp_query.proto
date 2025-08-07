@@ -12,9 +12,9 @@ package gov.nist.csd.pm.proto.v1.query;
 // PolicyQueryService provides methods for querying an NGAC policy.
 service PolicyQueryService {
   // graph queries
-  rpc NodeExists(IdOrNameQuery) returns (google.protobuf.BoolValue);
-  rpc GetNode(IdOrNameQuery) returns (gov.nist.csd.pm.proto.v1.model.Node);
-  rpc GetNodeId(IdOrNameQuery) returns (google.protobuf.Int64Value);
+  rpc NodeExists(gov.nist.csd.pm.proto.v1.model.IdOrName) returns (google.protobuf.BoolValue);
+  rpc GetNode(gov.nist.csd.pm.proto.v1.model.IdOrName) returns (gov.nist.csd.pm.proto.v1.model.Node);
+  rpc GetNodeId(GetByNameQuery) returns (google.protobuf.Int64Value);
   rpc SearchNodes(SearchQuery)  returns (gov.nist.csd.pm.proto.v1.model.NodeList);
   rpc GetPolicyClasses(google.protobuf.Empty) returns (gov.nist.csd.pm.proto.v1.model.NodeList);
   rpc GetAdjacentDescendants(GetAdjacentAssignmentsQuery) returns (gov.nist.csd.pm.proto.v1.model.NodeList);
@@ -72,28 +72,21 @@ service PolicyQueryService {
   rpc Serialize(SerializeQuery) returns (google.protobuf.StringValue);
 }
 
-message IdOrNameQuery {
-  oneof idOrName {
-    int64 id = 1;
-    string name = 2;
-  }
-}
-
 message SearchQuery {
   gov.nist.csd.pm.proto.v1.model.NodeType type = 1;
   map<string, string> properties = 2;
 }
 
 message GetAdjacentAssignmentsQuery {
-  int64 node_id = 1;
+  gov.nist.csd.pm.proto.v1.model.IdOrName node = 1;
 }
 
 message GetAssociationsQuery {
-  int64 node_id = 1;
+  gov.nist.csd.pm.proto.v1.model.IdOrName node = 1;
 }
 
 message GetSubgraphQuery {
-  int64 node_id = 1;
+  gov.nist.csd.pm.proto.v1.model.IdOrName node = 1;
 }
 message Subgraph {
   gov.nist.csd.pm.proto.v1.model.Node node = 1;
@@ -101,12 +94,12 @@ message Subgraph {
 }
 
 message GetDescendantsQuery {
-  int64 node_id = 1;
+  gov.nist.csd.pm.proto.v1.model.IdOrName node = 1;
 }
 
 message ContainmentQuery {
-  int64 ascendant_id = 1;
-  int64 descendant_id = 2;
+  gov.nist.csd.pm.proto.v1.model.IdOrName ascendant = 1;
+  gov.nist.csd.pm.proto.v1.model.IdOrName descendant = 2;
 }
 
 message ObligationExistsQuery {
@@ -114,7 +107,7 @@ message ObligationExistsQuery {
 }
 
 message GetObligationByAuthorQuery {
-  int64 author_id = 1;
+  gov.nist.csd.pm.proto.v1.model.IdOrName author = 1;
 }
 
 message GetByNameQuery {
@@ -123,36 +116,32 @@ message GetByNameQuery {
 
 message GetProhibitionBySubjectQuery {
   oneof subject {
-    int64 node_id = 1;
+    gov.nist.csd.pm.proto.v1.model.IdOrName node = 1;
     string process = 2;
   }
 }
 
 message GetInheritedProhibitionsQuery {
-  int64 subject_id = 1;
+  gov.nist.csd.pm.proto.v1.model.IdOrName subject = 1;
 }
 
 message GetProhibitionsWithContainerQuery {
-  int64 container_id = 1;
+  gov.nist.csd.pm.proto.v1.model.IdOrName container = 1;
 }
 
 message UserContext {
   oneof user {
-    int64 id = 1;
-    IdList attributes = 2;
+    gov.nist.csd.pm.proto.v1.model.IdOrName id = 1;
+    gov.nist.csd.pm.proto.v1.model.IdOrNameList attributes = 2;
   }
   optional string process = 3;
 }
 
 message TargetContext {
   oneof target {
-    int64 id = 1;
-    IdList attributes = 2;
+    gov.nist.csd.pm.proto.v1.model.IdOrName id = 1;
+    gov.nist.csd.pm.proto.v1.model.IdOrNameList attributes = 2;
   }
-}
-
-message IdList {
-  repeated int64 ids = 1;
 }
 
 message ComputePrivilegesQuery {
@@ -178,7 +167,7 @@ message ComputeDestinationAttributesQuery {
 }
 
 message AccessQueryMapping {
-  map<int64, AccessQueryMappingEntry> map = 1;
+  repeated AccessQueryMappingEntry entries = 1;
 }
 
 message AccessQueryMappingEntry {
@@ -188,7 +177,7 @@ message AccessQueryMappingEntry {
 
 message AccessWithRootQuery {
   UserContext user_ctx = 1;
-  int64 root = 2;
+  gov.nist.csd.pm.proto.v1.model.IdOrName root = 2;
 }
 
 message ExplainQuery {
@@ -248,7 +237,7 @@ message NodePrivilegeList {
 }
 
 message SelfAccessWithRootQuery {
-  int64 root = 1;
+  gov.nist.csd.pm.proto.v1.model.IdOrName root = 1;
 }
 
 message SignatureList {
