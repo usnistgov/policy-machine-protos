@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "google/protobuf/struct.proto";
+import "google/protobuf/empty.proto";
 import "v1/model.proto";
 import "v1/cmd.proto";
 
@@ -9,34 +10,29 @@ option java_package = "gov.nist.csd.pm.proto.v1.adjudication";
 
 package gov.nist.csd.pm.proto.v1.adjudication;
 
-// AdminAdjudicationService adjudicates administrative commands in order as a single transaction. Any error will cause
-// the entire transaction to be rolled back.
+// AdminAdjudicationService adjudicates administrative operation commands.
 service AdminAdjudicationService {
-  // Adjudicate the given admin commands and return a list of the responses in the same order. Commands that do not return
-  // a value will have an empty value in the response.
-  rpc AdjudicateAdminCmd(AdminCmdRequest) returns (AdminCmdResponse);
+  // Adjudicate a given operation request and return the output value.
+  rpc AdjudicateOperation(OperationRequest) returns (gov.nist.csd.pm.proto.v1.model.Value);
+
+  // Adjudicate the list of admin commands in order. Any error will cause the
+  // entire transaction to be rolled back.
+  rpc AdjudicateRoutine(RoutineRequest) returns (google.protobuf.Empty);
 }
 
-// ResourceAdjudicationService adjudicates resource commands and returns a Value if the provided command returns one.
+// ResourceAdjudicationService adjudicates resource commands and returns a Value
+// if the provided operation returns one.
 service ResourceAdjudicationService {
-  rpc AdjudicateResourceOperation(ResourceOperationCmd) returns (gov.nist.csd.pm.proto.v1.model.Node) {}
+  rpc AdjudicateResourceOperation(OperationRequest) returns (gov.nist.csd.pm.proto.v1.model.Value);
 }
 
-// AdminCmdRequest stores an array of AdminCommands.
-message AdminCmdRequest {
-  repeated gov.nist.csd.pm.proto.v1.cmd.AdminCommand commands = 1;
+// RoutineRequest stores an array of AdminOperationCommands.
+message RoutineRequest {
+  repeated gov.nist.csd.pm.proto.v1.cmd.AdminOperationCommand commands = 1;
 }
 
-// AdminCmdResponse store the results of adjudicated AdminCommands.
-message AdminCmdResponse {
-  repeated gov.nist.csd.pm.proto.v1.model.Value results = 1;
-}
-
-// ResourceOperationCmd stores an operation name and the operation target node, identified either by its name or ID.
-message ResourceOperationCmd {
-  string operation = 1;
-  oneof target {
-    int64 id = 2;
-    string name = 3;
-  }
+// OperationCmd stores an operation name and arguments.
+message OperationRequest {
+  string opName = 1;
+  gov.nist.csd.pm.proto.v1.model.ValueMap args = 2;
 }

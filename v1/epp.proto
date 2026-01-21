@@ -1,6 +1,5 @@
 syntax = "proto3";
 import "v1/model.proto";
-import "google/protobuf/empty.proto";
 
 option java_multiple_files = true;
 option java_package = "gov.nist.csd.pm.proto.v1.epp";
@@ -9,14 +8,12 @@ package gov.nist.csd.pm.proto.v1.epp;
 
 // EPPService provides methods to process events.
 service EPPService {
-  // Process policy events.
-  rpc processPolicyEvent(PolicyEventContext) returns (google.protobuf.Empty) {}
-  // Process generic events.
-  rpc processGenericEvent(GenericEventContext) returns (google.protobuf.Empty) {}
+  // Process an event context.
+  rpc processEvent(EventContext) returns (ProcessEventResponse) {}
 }
 
-// PolicyEventContext models the event context for all policy events.
-message PolicyEventContext {
+// EventContext models the event context for all policy events.
+message EventContext {
   // The user that triggered the event. Either a user name or set of attributes.
   oneof user {
     string user_name = 1;
@@ -27,27 +24,7 @@ message PolicyEventContext {
   // The name of the policy operation.
   string op_name = 4;
   // The args related to the operation.
-  repeated PolicyEventContextArg args = 5;
+  gov.nist.csd.pm.proto.v1.model.ValueMap args = 5;
 }
 
-// PolicyEventContextArg represents a valid Arg for a policy event context.
-message PolicyEventContextArg {
-  // The name of the associated operation parameter.
-  string name = 1;
-  // The value of the arg. Either a single node name or a list of Node names.
-  // The EPP expects names not IDs.
-  oneof value {
-    // A single node name.
-    string node_name = 2;
-    // A list of node names.
-    gov.nist.csd.pm.proto.v1.model.StringList node_name_list = 3;
-  }
-}
-
-// GenericEventContext models the event context for any possible non policy events.
-message GenericEventContext {
-  // The name of the event.
-  string name = 1;
-  // The args related to the event.
-  gov.nist.csd.pm.proto.v1.model.ValueMap args = 2;
-}
+message ProcessEventResponse { }
