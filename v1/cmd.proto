@@ -7,7 +7,7 @@ option java_package = "gov.nist.csd.pm.proto.v1.cmd";
 
 package gov.nist.csd.pm.proto.v1.cmd;
 
-message AdminCommand {
+message AdminOperationCommand {
   oneof cmd {
     CreatePolicyClassCmd create_policy_class_cmd = 1;
     CreateUserAttributeCmd create_user_attribute_cmd = 2;
@@ -26,15 +26,11 @@ message AdminCommand {
 
     DeleteObligationCmd delete_obligation_cmd = 14;
 
-    DeleteAdminOperationCmd delete_admin_operation_cmd = 15;
+    SetResourceAccessRightsCmd set_resource_operations_cmd = 15;
+    DeleteOperationCmd delete_admin_operation_cmd = 16;
 
-    SetResourceOperationsCmd set_resource_operations_cmd = 16;
-    DeleteAdminRoutineCmd delete_admin_routine_cmd = 17;
-
-    ExecutePMLCmd execute_pml_cmd = 18;
-    DeserializeCmd deserialize_cmd = 19;
-
-    GenericAdminCmd generic_admin_cmd = 20;
+    ExecutePMLCmd execute_pml_cmd = 17;
+    DeserializeCmd deserialize_cmd = 18;
   }
 }
 
@@ -117,16 +113,12 @@ message DeleteObligationCmd {
   string name = 1;
 }
 
-message DeleteAdminOperationCmd {
+message DeleteOperationCmd {
   string name = 1;
 }
 
-message SetResourceOperationsCmd {
-  repeated string operations = 1;
-}
-
-message DeleteAdminRoutineCmd {
-  string name = 1;
+message SetResourceAccessRightsCmd {
+  repeated string access_rights = 1;
 }
 
 message ExecutePMLCmd {
@@ -136,9 +128,4 @@ message ExecutePMLCmd {
 message DeserializeCmd {
   string serialized = 1;
   gov.nist.csd.pm.proto.v1.model.SerializationFormat format = 2;
-}
-
-message GenericAdminCmd {
-  string opName = 1;
-  gov.nist.csd.pm.proto.v1.model.ValueMap args = 2;
 }
