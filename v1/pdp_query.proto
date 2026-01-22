@@ -387,16 +387,16 @@ message AnyType {}
 
 message UserContext {
   oneof user {
-    gov.nist.csd.pm.proto.v1.model.NodeRef id = 1;
-    gov.nist.csd.pm.proto.v1.model.NodeRefList attributes = 2;
+    gov.nist.csd.pm.proto.v1.model.NodeRef user_node = 1;
+    gov.nist.csd.pm.proto.v1.model.NodeRefList user_attributes = 2;
   }
   optional string process = 3;
 }
 
 message TargetContext {
   oneof target {
-    gov.nist.csd.pm.proto.v1.model.NodeRef id = 1;
-    gov.nist.csd.pm.proto.v1.model.NodeRefList attributes = 2;
+    gov.nist.csd.pm.proto.v1.model.NodeRef target_node = 1;
+    gov.nist.csd.pm.proto.v1.model.NodeRefList target_attributes = 2;
   }
 }
 
