@@ -27,4 +27,5 @@ message EventContext {
   gov.nist.csd.pm.proto.v1.model.ValueMap args = 5;
 }
 
+// ProcessEventResponse is an empty response message for the processEvent rpc.
 message ProcessEventResponse { }

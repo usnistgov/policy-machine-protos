@@ -87,14 +87,14 @@ service PolicyQueryService {
 // ------------------------------------------------------------------------------------
 
 message NodeExistsRequest {
-  gov.nist.csd.pm.proto.v1.model.IdOrName node = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef node = 1;
 }
 message NodeExistsResponse {
   bool exists = 1;
 }
 
 message GetNodeRequest {
-  gov.nist.csd.pm.proto.v1.model.IdOrName node = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef node = 1;
 }
 message GetNodeResponse {
   gov.nist.csd.pm.proto.v1.model.Node node = 1;
@@ -122,42 +122,42 @@ message GetPolicyClassesResponse {
 }
 
 message GetAdjacentDescendantsRequest {
-  gov.nist.csd.pm.proto.v1.model.IdOrName node = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef node = 1;
 }
 message GetAdjacentDescendantsResponse {
   repeated gov.nist.csd.pm.proto.v1.model.Node nodes = 1;
 }
 
 message GetAdjacentAscendantsRequest {
-  gov.nist.csd.pm.proto.v1.model.IdOrName node = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef node = 1;
 }
 message GetAdjacentAscendantsResponse {
   repeated gov.nist.csd.pm.proto.v1.model.Node nodes = 1;
 }
 
 message GetAssociationsWithSourceRequest {
-  gov.nist.csd.pm.proto.v1.model.IdOrName node = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef node = 1;
 }
 message GetAssociationsWithSourceResponse {
   repeated gov.nist.csd.pm.proto.v1.model.Association associations = 1;
 }
 
 message GetAssociationsWithTargetRequest {
-  gov.nist.csd.pm.proto.v1.model.IdOrName node = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef node = 1;
 }
 message GetAssociationsWithTargetResponse {
   repeated gov.nist.csd.pm.proto.v1.model.Association associations = 1;
 }
 
 message GetAscendantSubgraphRequest {
-  gov.nist.csd.pm.proto.v1.model.IdOrName node = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef node = 1;
 }
 message GetAscendantSubgraphResponse {
   Subgraph subgraph = 1;
 }
 
 message GetDescendantSubgraphRequest {
-  gov.nist.csd.pm.proto.v1.model.IdOrName node = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef node = 1;
 }
 message GetDescendantSubgraphResponse {
   Subgraph subgraph = 1;
@@ -169,30 +169,30 @@ message Subgraph {
 }
 
 message GetAttributeDescendantsRequest {
-  gov.nist.csd.pm.proto.v1.model.IdOrName node = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef node = 1;
 }
 message GetAttributeDescendantsResponse {
   repeated gov.nist.csd.pm.proto.v1.model.Node nodes = 1;
 }
 
 message GetPolicyClassDescendantsRequest {
-  gov.nist.csd.pm.proto.v1.model.IdOrName node = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef node = 1;
 }
 message GetPolicyClassDescendantsResponse {
   repeated gov.nist.csd.pm.proto.v1.model.Node nodes = 1;
 }
 
 message IsAscendantRequest {
-  gov.nist.csd.pm.proto.v1.model.IdOrName ascendant = 1;
-  gov.nist.csd.pm.proto.v1.model.IdOrName descendant = 2;
+  gov.nist.csd.pm.proto.v1.model.NodeRef ascendant = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef descendant = 2;
 }
 message IsAscendantResponse {
   bool result = 1;
 }
 
 message IsDescendantRequest {
-  gov.nist.csd.pm.proto.v1.model.IdOrName ascendant = 1;
-  gov.nist.csd.pm.proto.v1.model.IdOrName descendant = 2;
+  gov.nist.csd.pm.proto.v1.model.NodeRef ascendant = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef descendant = 2;
 }
 message IsDescendantResponse {
   bool result = 1;
@@ -211,7 +211,7 @@ message GetProhibitionsResponse {
 
 message GetProhibitionsBySubjectRequest {
   oneof subject {
-    gov.nist.csd.pm.proto.v1.model.IdOrName node = 1;
+    gov.nist.csd.pm.proto.v1.model.NodeRef node = 1;
     string process = 2;
   }
 }
@@ -227,14 +227,14 @@ message GetProhibitionResponse {
 }
 
 message GetInheritedProhibitionsRequest {
-  gov.nist.csd.pm.proto.v1.model.IdOrName subject = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef subject = 1;
 }
 message GetInheritedProhibitionsResponse {
   repeated gov.nist.csd.pm.proto.v1.model.Prohibition prohibitions = 1;
 }
 
 message GetProhibitionsWithContainerRequest {
-  gov.nist.csd.pm.proto.v1.model.IdOrName container = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef container = 1;
 }
 message GetProhibitionsWithContainerResponse {
   repeated gov.nist.csd.pm.proto.v1.model.Prohibition prohibitions = 1;
@@ -259,7 +259,7 @@ message GetObligationResponse {
 }
 
 message GetObligationsByAuthorRequest {
-  gov.nist.csd.pm.proto.v1.model.IdOrName author = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef author = 1;
 }
 message GetObligationsByAuthorResponse {
   repeated gov.nist.csd.pm.proto.v1.model.Obligation obligations = 1;
@@ -387,16 +387,16 @@ message AnyType {}
 
 message UserContext {
   oneof user {
-    gov.nist.csd.pm.proto.v1.model.IdOrName id = 1;
-    gov.nist.csd.pm.proto.v1.model.IdOrNameList attributes = 2;
+    gov.nist.csd.pm.proto.v1.model.NodeRef id = 1;
+    gov.nist.csd.pm.proto.v1.model.NodeRefList attributes = 2;
   }
   optional string process = 3;
 }
 
 message TargetContext {
   oneof target {
-    gov.nist.csd.pm.proto.v1.model.IdOrName id = 1;
-    gov.nist.csd.pm.proto.v1.model.IdOrNameList attributes = 2;
+    gov.nist.csd.pm.proto.v1.model.NodeRef id = 1;
+    gov.nist.csd.pm.proto.v1.model.NodeRefList attributes = 2;
   }
 }
 
@@ -439,7 +439,7 @@ message ComputeDestinationAttributesResponse {
 
 message ComputeSubgraphPrivilegesRequest {
   UserContext user_ctx = 1;
-  gov.nist.csd.pm.proto.v1.model.IdOrName root = 2;
+  gov.nist.csd.pm.proto.v1.model.NodeRef root = 2;
 }
 message ComputeSubgraphPrivilegesResponse {
   SubgraphPrivileges subgraph_privileges = 1;
@@ -447,7 +447,7 @@ message ComputeSubgraphPrivilegesResponse {
 
 message ComputeAdjacentAscendantPrivilegesRequest {
   UserContext user_ctx = 1;
-  gov.nist.csd.pm.proto.v1.model.IdOrName root = 2;
+  gov.nist.csd.pm.proto.v1.model.NodeRef root = 2;
 }
 message ComputeAdjacentAscendantPrivilegesResponse {
   repeated NodePrivilege node_privileges = 1;
@@ -455,7 +455,7 @@ message ComputeAdjacentAscendantPrivilegesResponse {
 
 message ComputeAdjacentDescendantPrivilegesRequest {
   UserContext user_ctx = 1;
-  gov.nist.csd.pm.proto.v1.model.IdOrName root = 2;
+  gov.nist.csd.pm.proto.v1.model.NodeRef root = 2;
 }
 message ComputeAdjacentDescendantPrivilegesResponse {
   repeated NodePrivilege node_privileges = 1;
@@ -538,21 +538,21 @@ message SelfComputePrivilegesResponse {
 }
 
 message SelfComputeSubgraphPrivilegesRequest {
-  gov.nist.csd.pm.proto.v1.model.IdOrName root = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef root = 1;
 }
 message SelfComputeSubgraphPrivilegesResponse {
   SubgraphPrivileges subgraph_privileges = 1;
 }
 
 message SelfComputeAdjacentAscendantPrivilegesRequest {
-  gov.nist.csd.pm.proto.v1.model.IdOrName root = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef root = 1;
 }
 message SelfComputeAdjacentAscendantPrivilegesResponse {
   repeated NodePrivilege node_privileges = 1;
 }
 
 message SelfComputeAdjacentDescendantPrivilegesRequest {
-  gov.nist.csd.pm.proto.v1.model.IdOrName root = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef root = 1;
 }
 message SelfComputeAdjacentDescendantPrivilegesResponse {
   repeated NodePrivilege node_privileges = 1;
