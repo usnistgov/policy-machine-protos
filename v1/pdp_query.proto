@@ -350,11 +350,7 @@ message Signature {
 message Param {
   string name = 1;
   ParamType type = 2;
-  optional RequiredCapability req_cap = 3;
-}
-
-message RequiredCapability {
-  repeated string access_rights = 1;
+  optional gov.nist.csd.pm.proto.v1.model.StringList req_caps = 3;
 }
 
 message ParamType {
@@ -420,21 +416,21 @@ message ComputeCapabilityListRequest {
   UserContext user_ctx = 1;
 }
 message ComputeCapabilityListResponse {
-  AccessQueryMapping mapping = 1;
+  repeated NodePrivileges node_privileges = 1;
 }
 
 message ComputeACLRequest {
   TargetContext target_ctx = 1;
 }
 message ComputeACLResponse {
-  AccessQueryMapping mapping = 1;
+  repeated NodePrivileges node_privileges = 1;
 }
 
 message ComputeDestinationAttributesRequest {
   UserContext user_ctx = 1;
 }
 message ComputeDestinationAttributesResponse {
-  AccessQueryMapping mapping = 1;
+  repeated NodePrivileges node_privileges = 1;
 }
 
 message ComputeSubgraphPrivilegesRequest {
@@ -450,7 +446,7 @@ message ComputeAdjacentAscendantPrivilegesRequest {
   gov.nist.csd.pm.proto.v1.model.NodeRef root = 2;
 }
 message ComputeAdjacentAscendantPrivilegesResponse {
-  repeated NodePrivilege node_privileges = 1;
+  repeated NodePrivileges node_privileges = 1;
 }
 
 message ComputeAdjacentDescendantPrivilegesRequest {
@@ -458,7 +454,7 @@ message ComputeAdjacentDescendantPrivilegesRequest {
   gov.nist.csd.pm.proto.v1.model.NodeRef root = 2;
 }
 message ComputeAdjacentDescendantPrivilegesResponse {
-  repeated NodePrivilege node_privileges = 1;
+  repeated NodePrivileges node_privileges = 1;
 }
 
 message ExplainRequest {
@@ -477,16 +473,7 @@ message ComputePersonalObjectSystemRequest {
   UserContext user_ctx = 1;
 }
 message ComputePersonalObjectSystemResponse {
-  repeated NodePrivilege node_privileges = 1;
-}
-
-message AccessQueryMapping {
-  repeated AccessQueryMappingEntry entries = 1;
-}
-
-message AccessQueryMappingEntry {
-  gov.nist.csd.pm.proto.v1.model.Node node = 1;
-  repeated string arset = 2;
+  repeated NodePrivileges node_privileges = 1;
 }
 
 message SubgraphPrivileges {
@@ -495,7 +482,7 @@ message SubgraphPrivileges {
   repeated SubgraphPrivileges ascendants = 3;
 }
 
-message NodePrivilege {
+message NodePrivileges {
   gov.nist.csd.pm.proto.v1.model.Node node = 1;
   repeated string arset = 2;
 }
@@ -548,21 +535,21 @@ message SelfComputeAdjacentAscendantPrivilegesRequest {
   gov.nist.csd.pm.proto.v1.model.NodeRef root = 1;
 }
 message SelfComputeAdjacentAscendantPrivilegesResponse {
-  repeated NodePrivilege node_privileges = 1;
+  repeated NodePrivileges node_privileges = 1;
 }
 
 message SelfComputeAdjacentDescendantPrivilegesRequest {
   gov.nist.csd.pm.proto.v1.model.NodeRef root = 1;
 }
 message SelfComputeAdjacentDescendantPrivilegesResponse {
-  repeated NodePrivilege node_privileges = 1;
+  repeated NodePrivileges node_privileges = 1;
 }
 
 message SelfComputePersonalObjectSystemRequest { }
-message SelfComputePersonalObjectSystemResponse {
-  repeated NodePrivilege node_privileges = 1;
-}
 
+message SelfComputePersonalObjectSystemResponse {
+  repeated NodePrivileges node_privileges = 1;
+}
 
 // ------------------------------------------------------------------------------------
 // Serialization Request/Responses

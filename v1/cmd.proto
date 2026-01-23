@@ -59,33 +59,33 @@ message CreateObjectCmd {
 }
 
 message SetNodePropertiesCmd {
-  gov.nist.csd.pm.proto.v1.model.NodeRef id = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef node = 1;
   map<string, string> properties = 2;
 }
 
 message DeleteNodeCmd {
-  gov.nist.csd.pm.proto.v1.model.NodeRef id = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef node = 1;
 }
 
 message AssignCmd {
-  gov.nist.csd.pm.proto.v1.model.NodeRef ascendant_id = 1;
-  repeated gov.nist.csd.pm.proto.v1.model.NodeRef descendant_ids = 2;
+  gov.nist.csd.pm.proto.v1.model.NodeRef ascendant = 1;
+  repeated gov.nist.csd.pm.proto.v1.model.NodeRef descendants = 2;
 }
 
 message DeassignCmd {
-  gov.nist.csd.pm.proto.v1.model.NodeRef ascendant_id = 1;
-  repeated gov.nist.csd.pm.proto.v1.model.NodeRef descendant_ids = 2;
+  gov.nist.csd.pm.proto.v1.model.NodeRef ascendant = 1;
+  repeated gov.nist.csd.pm.proto.v1.model.NodeRef descendants = 2;
 }
 
 message AssociateCmd {
-  gov.nist.csd.pm.proto.v1.model.NodeRef ua_id = 1;
-  gov.nist.csd.pm.proto.v1.model.NodeRef target_id = 2;
+  gov.nist.csd.pm.proto.v1.model.NodeRef ua = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef target = 2;
   repeated string arset = 3;
 }
 
 message DissociateCmd {
-  gov.nist.csd.pm.proto.v1.model.NodeRef ua_id = 1;
-  gov.nist.csd.pm.proto.v1.model.NodeRef target_id = 2;
+  gov.nist.csd.pm.proto.v1.model.NodeRef ua = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef target = 2;
 }
 
 message DeleteProhibitionCmd {
@@ -103,7 +103,7 @@ message CreateProhibitionCmd {
   repeated ContainerCondition container_conditions = 6;
 
   message ContainerCondition {
-    gov.nist.csd.pm.proto.v1.model.NodeRef container_id = 1;
+    gov.nist.csd.pm.proto.v1.model.NodeRef container = 1;
     bool complement = 2;
   }
 }
