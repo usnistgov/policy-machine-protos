@@ -11,11 +11,11 @@ package gov.nist.csd.pm.proto.v1.pdp.adjudication;
 // AdminAdjudicationService adjudicates administrative operation commands.
 service AdminAdjudicationService {
   // Adjudicate a given operation request and return the output value.
-  rpc AdjudicateOperation(OperationRequest) returns (AdjudicateOperationResponse);
+  rpc adjudicateOperation(OperationRequest) returns (AdjudicateOperationResponse);
 
   // Adjudicate the list of admin commands in order. Any error will cause the
   // entire transaction to be rolled back.
-  rpc AdjudicateRoutine(RoutineRequest) returns (AdjudicateRoutineResponse);
+  rpc adjudicateRoutine(RoutineRequest) returns (AdjudicateRoutineResponse);
 }
 
 // ResourceAdjudicationService adjudicates resource commands and returns a Value

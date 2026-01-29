@@ -10,76 +10,76 @@ package gov.nist.csd.pm.proto.v1.pdp.query;
 // PolicyQueryService provides methods for querying an NGAC policy.
 service PolicyQueryService {
   // Graph Queries
-  rpc NodeExists(NodeExistsRequest) returns (NodeExistsResponse);
-  rpc GetNode(GetNodeRequest) returns (GetNodeResponse);
-  rpc GetNodeId(GetNodeIdRequest) returns (GetNodeIdResponse);
-  rpc SearchNodes(SearchNodesRequest) returns (SearchNodesResponse);
-  rpc GetPolicyClasses(GetPolicyClassesRequest) returns (GetPolicyClassesResponse);
-  rpc GetAdjacentDescendants(GetAdjacentDescendantsRequest) returns (GetAdjacentDescendantsResponse);
-  rpc GetAdjacentAscendants(GetAdjacentAscendantsRequest) returns (GetAdjacentAscendantsResponse);
-  rpc GetAssociationsWithSource(GetAssociationsWithSourceRequest) returns (GetAssociationsWithSourceResponse);
-  rpc GetAssociationsWithTarget(GetAssociationsWithTargetRequest) returns (GetAssociationsWithTargetResponse);
-  rpc GetAscendantSubgraph(GetAscendantSubgraphRequest) returns (GetAscendantSubgraphResponse);
-  rpc GetDescendantSubgraph(GetDescendantSubgraphRequest) returns (GetDescendantSubgraphResponse);
-  rpc GetAttributeDescendants(GetAttributeDescendantsRequest) returns (GetAttributeDescendantsResponse);
-  rpc GetPolicyClassDescendants(GetPolicyClassDescendantsRequest) returns (GetPolicyClassDescendantsResponse);
-  rpc IsAscendant(IsAscendantRequest) returns (IsAscendantResponse);
-  rpc IsDescendant(IsDescendantRequest) returns (IsDescendantResponse);
+  rpc nodeExists(NodeExistsRequest) returns (NodeExistsResponse);
+  rpc getNode(GetNodeRequest) returns (GetNodeResponse);
+  rpc getNodeId(GetNodeIdRequest) returns (GetNodeIdResponse);
+  rpc searchNodes(SearchNodesRequest) returns (SearchNodesResponse);
+  rpc getPolicyClasses(GetPolicyClassesRequest) returns (GetPolicyClassesResponse);
+  rpc getAdjacentDescendants(GetAdjacentDescendantsRequest) returns (GetAdjacentDescendantsResponse);
+  rpc getAdjacentAscendants(GetAdjacentAscendantsRequest) returns (GetAdjacentAscendantsResponse);
+  rpc getAssociationsWithSource(GetAssociationsWithSourceRequest) returns (GetAssociationsWithSourceResponse);
+  rpc getAssociationsWithTarget(GetAssociationsWithTargetRequest) returns (GetAssociationsWithTargetResponse);
+  rpc getAscendantSubgraph(GetAscendantSubgraphRequest) returns (GetAscendantSubgraphResponse);
+  rpc getDescendantSubgraph(GetDescendantSubgraphRequest) returns (GetDescendantSubgraphResponse);
+  rpc getAttributeDescendants(GetAttributeDescendantsRequest) returns (GetAttributeDescendantsResponse);
+  rpc getPolicyClassDescendants(GetPolicyClassDescendantsRequest) returns (GetPolicyClassDescendantsResponse);
+  rpc isAscendant(IsAscendantRequest) returns (IsAscendantResponse);
+  rpc isDescendant(IsDescendantRequest) returns (IsDescendantResponse);
 
   // Prohibition Queries
-  rpc GetProhibitions(GetProhibitionsRequest) returns (GetProhibitionsResponse);
-  rpc GetProhibitionsBySubject(GetProhibitionsBySubjectRequest) returns (GetProhibitionsBySubjectResponse);
-  rpc GetProhibition(GetProhibitionRequest) returns (GetProhibitionResponse);
-  rpc GetInheritedProhibitions(GetInheritedProhibitionsRequest) returns (GetInheritedProhibitionsResponse);
-  rpc GetProhibitionsWithContainer(GetProhibitionsWithContainerRequest) returns (GetProhibitionsWithContainerResponse);
+  rpc getProhibitions(GetProhibitionsRequest) returns (GetProhibitionsResponse);
+  rpc getProhibitionsBySubject(GetProhibitionsBySubjectRequest) returns (GetProhibitionsBySubjectResponse);
+  rpc getProhibition(GetProhibitionRequest) returns (GetProhibitionResponse);
+  rpc getInheritedProhibitions(GetInheritedProhibitionsRequest) returns (GetInheritedProhibitionsResponse);
+  rpc getProhibitionsWithContainer(GetProhibitionsWithContainerRequest) returns (GetProhibitionsWithContainerResponse);
 
   // Obligation Queries
-  rpc GetObligations(GetObligationsRequest) returns (GetObligationsResponse);
-  rpc GetObligation(GetObligationRequest) returns (GetObligationResponse);
-  rpc GetObligationsByAuthor(GetObligationsByAuthorRequest) returns (GetObligationsByAuthorResponse);
+  rpc getObligations(GetObligationsRequest) returns (GetObligationsResponse);
+  rpc getObligation(GetObligationRequest) returns (GetObligationResponse);
+  rpc getObligationsByAuthor(GetObligationsByAuthorRequest) returns (GetObligationsByAuthorResponse);
 
   // Resource Operations Queries
-  rpc GetResourceAccessRights(GetResourceAccessRightsRequest) returns (GetResourceAccessRightsResponse);
-  rpc GetResourceOperationSignatures(GetResourceOperationSignaturesRequest) returns (GetResourceOperationSignaturesResponse);
-  rpc GetResourceOperationSignature(GetResourceOperationSignatureRequest) returns (GetResourceOperationSignatureResponse);
+  rpc getResourceAccessRights(GetResourceAccessRightsRequest) returns (GetResourceAccessRightsResponse);
+  rpc getResourceOperationSignatures(GetResourceOperationSignaturesRequest) returns (GetResourceOperationSignaturesResponse);
+  rpc getResourceOperationSignature(GetResourceOperationSignatureRequest) returns (GetResourceOperationSignatureResponse);
 
   // Admin Operations Queries
-  rpc GetAdminOperationSignatures(GetAdminOperationSignaturesRequest) returns (GetAdminOperationSignaturesResponse);
-  rpc GetAdminOperationSignature(GetAdminOperationSignatureRequest) returns (GetAdminOperationSignatureResponse);
+  rpc getAdminOperationSignatures(GetAdminOperationSignaturesRequest) returns (GetAdminOperationSignaturesResponse);
+  rpc getAdminOperationSignature(GetAdminOperationSignatureRequest) returns (GetAdminOperationSignatureResponse);
 
   // Routine Queries
-  rpc GetRoutineSignatures(GetRoutineSignaturesRequest) returns (GetRoutineSignaturesResponse);
-  rpc GetRoutineSignature(GetRoutineSignatureRequest) returns (GetRoutineSignatureResponse);
+  rpc getRoutineSignatures(GetRoutineSignaturesRequest) returns (GetRoutineSignaturesResponse);
+  rpc getRoutineSignature(GetRoutineSignatureRequest) returns (GetRoutineSignatureResponse);
 
   // Query Operation Queries
-  rpc GetQuerySignatures(GetQuerySignaturesRequest) returns (GetQuerySignaturesResponse);
-  rpc GetQuerySignature(GetQuerySignatureRequest) returns (GetQuerySignatureResponse);
+  rpc getQuerySignatures(GetQuerySignaturesRequest) returns (GetQuerySignaturesResponse);
+  rpc getQuerySignature(GetQuerySignatureRequest) returns (GetQuerySignatureResponse);
 
   // Function Operation Queries
-  rpc GetFunctionSignatures(GetFunctionSignaturesRequest) returns (GetFunctionSignaturesResponse);
-  rpc GetFunctionSignature(GetFunctionSignatureRequest) returns (GetFunctionSignatureResponse);
+  rpc getFunctionSignatures(GetFunctionSignaturesRequest) returns (GetFunctionSignaturesResponse);
+  rpc getFunctionSignature(GetFunctionSignatureRequest) returns (GetFunctionSignatureResponse);
 
   // Access Queries
-  rpc ComputePrivileges(ComputePrivilegesRequest) returns (ComputePrivilegesResponse);
-  rpc ComputeDeniedPrivileges(ComputeDeniedPrivilegesRequest) returns (ComputeDeniedPrivilegesResponse);
-  rpc ComputeCapabilityList(ComputeCapabilityListRequest) returns (ComputeCapabilityListResponse);
-  rpc ComputeACL(ComputeACLRequest) returns (ComputeACLResponse);
-  rpc ComputeDestinationAttributes(ComputeDestinationAttributesRequest) returns (ComputeDestinationAttributesResponse);
-  rpc ComputeSubgraphPrivileges(ComputeSubgraphPrivilegesRequest) returns (ComputeSubgraphPrivilegesResponse);
-  rpc ComputeAdjacentAscendantPrivileges(ComputeAdjacentAscendantPrivilegesRequest) returns (ComputeAdjacentAscendantPrivilegesResponse);
-  rpc ComputeAdjacentDescendantPrivileges(ComputeAdjacentDescendantPrivilegesRequest) returns (ComputeAdjacentDescendantPrivilegesResponse);
-  rpc Explain(ExplainRequest) returns (ExplainResponse);
-  rpc ComputePersonalObjectSystem(ComputePersonalObjectSystemRequest) returns (ComputePersonalObjectSystemResponse);
+  rpc computePrivileges(ComputePrivilegesRequest) returns (ComputePrivilegesResponse);
+  rpc computeDeniedPrivileges(ComputeDeniedPrivilegesRequest) returns (ComputeDeniedPrivilegesResponse);
+  rpc computeCapabilityList(ComputeCapabilityListRequest) returns (ComputeCapabilityListResponse);
+  rpc computeACL(ComputeACLRequest) returns (ComputeACLResponse);
+  rpc computeDestinationAttributes(ComputeDestinationAttributesRequest) returns (ComputeDestinationAttributesResponse);
+  rpc computeSubgraphPrivileges(ComputeSubgraphPrivilegesRequest) returns (ComputeSubgraphPrivilegesResponse);
+  rpc computeAdjacentAscendantPrivileges(ComputeAdjacentAscendantPrivilegesRequest) returns (ComputeAdjacentAscendantPrivilegesResponse);
+  rpc computeAdjacentDescendantPrivileges(ComputeAdjacentDescendantPrivilegesRequest) returns (ComputeAdjacentDescendantPrivilegesResponse);
+  rpc explain(ExplainRequest) returns (ExplainResponse);
+  rpc computePersonalObjectSystem(ComputePersonalObjectSystemRequest) returns (ComputePersonalObjectSystemResponse);
 
   // Self (Caller) Access Queries
-  rpc SelfComputePrivileges(SelfComputePrivilegesRequest) returns (SelfComputePrivilegesResponse);
-  rpc SelfComputeSubgraphPrivileges(SelfComputeSubgraphPrivilegesRequest) returns (SelfComputeSubgraphPrivilegesResponse);
-  rpc SelfComputeAdjacentAscendantPrivileges(SelfComputeAdjacentAscendantPrivilegesRequest) returns (SelfComputeAdjacentAscendantPrivilegesResponse);
-  rpc SelfComputeAdjacentDescendantPrivileges(SelfComputeAdjacentDescendantPrivilegesRequest) returns (SelfComputeAdjacentDescendantPrivilegesResponse);
-  rpc SelfComputePersonalObjectSystem(SelfComputePersonalObjectSystemRequest) returns (SelfComputePersonalObjectSystemResponse);
+  rpc selfComputePrivileges(SelfComputePrivilegesRequest) returns (SelfComputePrivilegesResponse);
+  rpc selfComputeSubgraphPrivileges(SelfComputeSubgraphPrivilegesRequest) returns (SelfComputeSubgraphPrivilegesResponse);
+  rpc selfComputeAdjacentAscendantPrivileges(SelfComputeAdjacentAscendantPrivilegesRequest) returns (SelfComputeAdjacentAscendantPrivilegesResponse);
+  rpc selfComputeAdjacentDescendantPrivileges(SelfComputeAdjacentDescendantPrivilegesRequest) returns (SelfComputeAdjacentDescendantPrivilegesResponse);
+  rpc selfComputePersonalObjectSystem(SelfComputePersonalObjectSystemRequest) returns (SelfComputePersonalObjectSystemResponse);
 
   // Serialization
-  rpc Serialize(SerializeRequest) returns (SerializeResponse);
+  rpc serialize(SerializeRequest) returns (SerializeResponse);
 }
 
 // ------------------------------------------------------------------------------------
