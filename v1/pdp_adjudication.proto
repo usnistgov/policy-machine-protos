@@ -4,9 +4,9 @@ import "v1/model.proto";
 import "v1/cmd.proto";
 
 option java_multiple_files = true;
-option java_package = "gov.nist.csd.pm.proto.v1.adjudication";
+option java_package = "gov.nist.csd.pm.proto.v1.pdp.adjudication";
 
-package gov.nist.csd.pm.proto.v1.adjudication;
+package gov.nist.csd.pm.proto.v1.pdp.adjudication;
 
 // AdminAdjudicationService adjudicates administrative operation commands.
 service AdminAdjudicationService {

@@ -3,9 +3,9 @@ syntax = "proto3";
 import "v1/model.proto";
 
 option java_multiple_files = true;
-option java_package = "gov.nist.csd.pm.proto.v1.query";
+option java_package = "gov.nist.csd.pm.proto.v1.pdp.query";
 
-package gov.nist.csd.pm.proto.v1.query;
+package gov.nist.csd.pm.proto.v1.pdp.query;
 
 // PolicyQueryService provides methods for querying an NGAC policy.
 service PolicyQueryService {

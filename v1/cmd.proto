@@ -3,7 +3,7 @@ syntax = "proto3";
 import "v1/model.proto";
 
 option java_multiple_files = true;
-option java_package = "gov.nist.csd.pm.proto.v1.cmd";
+option java_package = "gov.nist.csd.pm.proto.v1.pdp.cmd";
 
 package gov.nist.csd.pm.proto.v1.cmd;
 
