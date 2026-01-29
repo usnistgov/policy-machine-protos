@@ -21,7 +21,7 @@ service AdminAdjudicationService {
 // ResourceAdjudicationService adjudicates resource commands and returns a Value
 // if the provided operation returns one.
 service ResourceAdjudicationService {
-  rpc AdjudicateResourceOperation(OperationRequest) returns (AdjudicateOperationResponse);
+  rpc adjudicateResourceOperation(OperationRequest) returns (AdjudicateOperationResponse);
 }
 
 // OperationCmd stores an operation name and arguments.
