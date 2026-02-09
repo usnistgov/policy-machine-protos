@@ -21,16 +21,17 @@ message AdminOperationCommand {
     AssociateCmd associate_cmd = 10;
     DissociateCmd dissociate_cmd = 11;
 
-    CreateProhibitionCmd create_prohibition_cmd = 12;
-    DeleteProhibitionCmd delete_prohibition_cmd = 13;
+    CreateNodeProhibitionCmd create_node_prohibition_cmd = 12;
+    CreateProcessProhibitionCmd create_process_prohibition_cmd = 13;
+    DeleteProhibitionCmd delete_prohibition_cmd = 14;
 
-    DeleteObligationCmd delete_obligation_cmd = 14;
+    DeleteObligationCmd delete_obligation_cmd = 15;
 
-    SetResourceAccessRightsCmd set_resource_operations_cmd = 15;
-    DeleteOperationCmd delete_admin_operation_cmd = 16;
+    SetResourceAccessRightsCmd set_resource_operations_cmd = 16;
+    DeleteOperationCmd delete_admin_operation_cmd = 17;
 
-    ExecutePMLCmd execute_pml_cmd = 17;
-    DeserializeCmd deserialize_cmd = 18;
+    ExecutePMLCmd execute_pml_cmd = 18;
+    DeserializeCmd deserialize_cmd = 19;
   }
 }
 
@@ -92,20 +93,23 @@ message DeleteProhibitionCmd {
   string name = 1;
 }
 
-message CreateProhibitionCmd {
+message CreateNodeProhibitionCmd {
   string name = 1;
-  oneof subject {
-    gov.nist.csd.pm.proto.v1.model.NodeRef node = 2;
-    string process = 3;
-  }
-  repeated string arset = 4;
-  bool intersection = 5;
-  repeated ContainerCondition container_conditions = 6;
+  gov.nist.csd.pm.proto.v1.model.NodeRef node = 2;
+  repeated string arset = 3;
+  bool is_conjunctive = 4;
+  repeated gov.nist.csd.pm.proto.v1.model.NodeRefList inclusion_set = 5;
+  repeated gov.nist.csd.pm.proto.v1.model.NodeRefList exclusion_set = 6;
+}
 
-  message ContainerCondition {
-    gov.nist.csd.pm.proto.v1.model.NodeRef container = 1;
-    bool complement = 2;
-  }
+message CreateProcessProhibitionCmd {
+  string name = 1;
+  gov.nist.csd.pm.proto.v1.model.NodeRef node = 2;
+  string process = 3;
+  repeated string arset = 4;
+  bool is_conjunctive = 5;
+  repeated gov.nist.csd.pm.proto.v1.model.NodeRefList inclusion_set = 6;
+  repeated gov.nist.csd.pm.proto.v1.model.NodeRefList exclusion_set = 7;
 }
 
 message DeleteObligationCmd {

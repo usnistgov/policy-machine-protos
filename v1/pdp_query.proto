@@ -345,13 +345,32 @@ message Signature {
   string name = 1;
   ParamType return_type = 2;
   repeated Param params = 3;
+  repeated RequiredCapability required_capabilities = 4;
+}
+
+message RequiredCapability {
+
 }
 
 message Param {
   string name = 1;
-  ParamType type = 2;
-  optional gov.nist.csd.pm.proto.v1.model.StringList req_caps = 3;
+  oneof kind {
+    FormalParam formal_param = 2;
+    NodeIdFormalParam node_id_formal_param = 3;
+    NodeIdListFormalParam node_id_list_formal_param = 4;
+    NodeNameFormalParam node_name_formal_param = 5;
+    NodeNameListFormalParam node_name_list_formal_param = 6;
+  }
 }
+
+message FormalParam {
+  ParamType type = 1;
+}
+
+message NodeIdFormalParam {}
+message NodeIdListFormalParam {}
+message NodeNameFormalParam {}
+message NodeNameListFormalParam {}
 
 message ParamType {
   oneof type {

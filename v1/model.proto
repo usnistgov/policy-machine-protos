@@ -37,18 +37,11 @@ message AssociationList {
 
 message Prohibition {
   string name = 1;
-  oneof subject {
-    gov.nist.csd.pm.proto.v1.model.Node node = 2;
-    string process = 3;
-  }
-  repeated string arset = 4;
-  bool intersection = 5;
-  repeated ContainerCondition container_conditions = 6;
-
-  message ContainerCondition {
-    gov.nist.csd.pm.proto.v1.model.Node container = 1;
-    bool complement = 2;
-  }
+  gov.nist.csd.pm.proto.v1.model.NodeRef node = 2;
+  repeated string arset = 3;
+  bool is_conjunctive = 4;
+  repeated gov.nist.csd.pm.proto.v1.model.NodeRefList inclusion_set = 5;
+  repeated gov.nist.csd.pm.proto.v1.model.NodeRefList exclusion_set = 6;
 }
 
 message ProhibitionList {
