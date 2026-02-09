@@ -353,26 +353,19 @@ message RequiredCapability {
 }
 
 message RequiredPrivilege {
-  oneof privilege {
-    RequiredPrivilegeOnNodeName on_node_name = 1;
-    RequiredPrivilegeOnNodeId on_node_id = 2;
-    RequiredPrivilegeOnParameter on_parameter = 3;
+  oneof on {
+    OnNode on_node = 1;
+    OnParameter on_parameter = 2;
   }
+  repeated string required = 3;
 }
 
-message RequiredPrivilegeOnNodeName {
+message OnNode {
   string name = 1;
-  repeated string required = 2;
 }
 
-message RequiredPrivilegeOnNodeId {
-  int64 node_id = 1;
-  repeated string required = 2;
-}
-
-message RequiredPrivilegeOnParameter {
+message OnParameter {
   string param_name = 1;
-  repeated string required = 2;
 }
 
 message Param {
