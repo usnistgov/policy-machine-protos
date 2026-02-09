@@ -98,8 +98,8 @@ message CreateNodeProhibitionCmd {
   gov.nist.csd.pm.proto.v1.model.NodeRef node = 2;
   repeated string arset = 3;
   bool is_conjunctive = 4;
-  repeated gov.nist.csd.pm.proto.v1.model.NodeRefList inclusion_set = 5;
-  repeated gov.nist.csd.pm.proto.v1.model.NodeRefList exclusion_set = 6;
+  gov.nist.csd.pm.proto.v1.model.NodeRefList inclusion_set = 5;
+  gov.nist.csd.pm.proto.v1.model.NodeRefList exclusion_set = 6;
 }
 
 message CreateProcessProhibitionCmd {
@@ -108,8 +108,8 @@ message CreateProcessProhibitionCmd {
   string process = 3;
   repeated string arset = 4;
   bool is_conjunctive = 5;
-  repeated gov.nist.csd.pm.proto.v1.model.NodeRefList inclusion_set = 6;
-  repeated gov.nist.csd.pm.proto.v1.model.NodeRefList exclusion_set = 7;
+  gov.nist.csd.pm.proto.v1.model.NodeRefList inclusion_set = 6;
+  gov.nist.csd.pm.proto.v1.model.NodeRefList exclusion_set = 7;
 }
 
 message DeleteObligationCmd {
