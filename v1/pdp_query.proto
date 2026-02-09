@@ -354,8 +354,8 @@ message RequiredCapability {
 
 message RequiredPrivilege {
   oneof on {
-    OnNode on_node = 1;
-    OnParameter on_parameter = 2;
+    string node = 1;
+    string param = 2;
   }
   repeated string required = 3;
 }
