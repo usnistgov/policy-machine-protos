@@ -40,24 +40,8 @@ service PolicyQueryService {
 
   // Resource Operations Queries
   rpc getResourceAccessRights(GetResourceAccessRightsRequest) returns (GetResourceAccessRightsResponse);
-  rpc getResourceOperationSignatures(GetResourceOperationSignaturesRequest) returns (GetResourceOperationSignaturesResponse);
-  rpc getResourceOperationSignature(GetResourceOperationSignatureRequest) returns (GetResourceOperationSignatureResponse);
-
-  // Admin Operations Queries
-  rpc getAdminOperationSignatures(GetAdminOperationSignaturesRequest) returns (GetAdminOperationSignaturesResponse);
-  rpc getAdminOperationSignature(GetAdminOperationSignatureRequest) returns (GetAdminOperationSignatureResponse);
-
-  // Routine Queries
-  rpc getRoutineSignatures(GetRoutineSignaturesRequest) returns (GetRoutineSignaturesResponse);
-  rpc getRoutineSignature(GetRoutineSignatureRequest) returns (GetRoutineSignatureResponse);
-
-  // Query Operation Queries
-  rpc getQuerySignatures(GetQuerySignaturesRequest) returns (GetQuerySignaturesResponse);
-  rpc getQuerySignature(GetQuerySignatureRequest) returns (GetQuerySignatureResponse);
-
-  // Function Operation Queries
-  rpc getFunctionSignatures(GetFunctionSignaturesRequest) returns (GetFunctionSignaturesResponse);
-  rpc getFunctionSignature(GetFunctionSignatureRequest) returns (GetFunctionSignatureResponse);
+  rpc getOperationSignature(GetOperationSignatureRequest) returns (GetOperationSignatureResponse);
+  rpc getAllOperationSignatures(GetAllOperationSignaturesRequest) returns (GetAllOperationSignaturesResponse);
 
   // Access Queries
   rpc computePrivileges(ComputePrivilegesRequest) returns (ComputePrivilegesResponse);
@@ -276,69 +260,18 @@ message GetResourceAccessRightsResponse {
   repeated string access_rights = 1;
 }
 
-message GetResourceOperationSignaturesRequest {}
-
-message GetResourceOperationSignaturesResponse {
-  repeated Signature signatures = 1;
-}
-
-message GetResourceOperationSignatureRequest {
+message GetOperationSignatureRequest {
   string name = 1;
 }
-message GetResourceOperationSignatureResponse {
+
+message GetOperationSignatureResponse {
   Signature signature = 1;
 }
 
-message GetAdminOperationSignaturesRequest {}
+message GetAllOperationSignaturesRequest {}
 
-message GetAdminOperationSignaturesResponse {
-  repeated Signature signatures = 1;
-}
-
-message GetAdminOperationSignatureRequest {
-  string name = 1;
-}
-message GetAdminOperationSignatureResponse {
-  Signature signature = 1;
-}
-
-message GetRoutineSignaturesRequest {}
-
-message GetRoutineSignaturesResponse {
-  repeated Signature signatures = 1;
-}
-
-message GetRoutineSignatureRequest {
-  string name = 1;
-}
-message GetRoutineSignatureResponse {
-  Signature signature = 1;
-}
-
-message GetQuerySignaturesRequest {}
-
-message GetQuerySignaturesResponse {
-  repeated Signature signatures = 1;
-}
-
-message GetQuerySignatureRequest {
-  string name = 1;
-}
-message GetQuerySignatureResponse {
-  Signature signature = 1;
-}
-
-message GetFunctionSignaturesRequest {}
-
-message GetFunctionSignaturesResponse {
-  repeated Signature signatures = 1;
-}
-
-message GetFunctionSignatureRequest {
-  string name = 1;
-}
-message GetFunctionSignatureResponse {
-  Signature signature = 1;
+message GetAllOperationSignaturesResponse {
+  repeated Signature signature = 1;
 }
 
 message Signature {
@@ -346,6 +279,15 @@ message Signature {
   ParamType return_type = 2;
   repeated Param params = 3;
   repeated RequiredCapability required_capabilities = 4;
+  OperationType operation_type = 5;
+}
+
+enum OperationType {
+  ADMIN = 0;
+  RESOURCE = 1;
+  QUERY = 2;
+  ROUTINE = 3;
+  FUNCTION = 4;
 }
 
 message RequiredCapability {

@@ -1,7 +1,6 @@
 syntax = "proto3";
 
 import "v1/model.proto";
-import "v1/cmd.proto";
 
 option java_multiple_files = true;
 option java_package = "gov.nist.csd.pm.proto.v1.pdp.adjudication";
@@ -24,9 +23,9 @@ service ResourceAdjudicationService {
   rpc adjudicateResourceOperation(OperationRequest) returns (AdjudicateOperationResponse);
 }
 
-// OperationCmd stores an operation name and arguments.
+// OperationRequest stores the name and args of an operation invocation.
 message OperationRequest {
-  string opName = 1;
+  string name = 1;
   gov.nist.csd.pm.proto.v1.model.ValueMap args = 2;
 }
 
@@ -35,9 +34,9 @@ message AdjudicateOperationResponse {
   gov.nist.csd.pm.proto.v1.model.Value value = 1;
 }
 
-// RoutineRequest stores an array of AdminOperationCommands.
+// RoutineRequest stores an array of OperationRequests.
 message RoutineRequest {
-  repeated gov.nist.csd.pm.proto.v1.cmd.AdminOperationCommand commands = 1;
+  repeated OperationRequest operations = 1;
 }
 
 // AdjudicateRoutineResponse is an empty response for the AdjudicateRoutine rpc.
