@@ -15,6 +15,9 @@ service AdminAdjudicationService {
   // Adjudicate the list of admin commands in order. Any error will cause the
   // entire transaction to be rolled back.
   rpc adjudicateRoutine(RoutineRequest) returns (AdjudicateRoutineResponse);
+
+  // Execute PML.
+  rpc executePML(ExecutePMLRequest) returns (ExecutePMLResponse);
 }
 
 // ResourceAdjudicationService adjudicates resource commands and returns a Value
@@ -42,6 +45,17 @@ message RoutineRequest {
 // AdjudicateRoutineResponse is an empty response for the AdjudicateRoutine rpc.
 message AdjudicateRoutineResponse {
 }
+
+// ExecutePMLRequest stores the pml string to be executed.
+message ExecutePMLRequest {
+  string pml = 1;
+}
+
+// ExecutePMLResponse stores the response value to a PML string being executed.
+message ExecutePMLResponse {
+  gov.nist.csd.pm.proto.v1.model.Value value = 1;
+}
+
 
 
 
