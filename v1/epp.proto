@@ -2,9 +2,9 @@ syntax = "proto3";
 import "v1/model.proto";
 
 option java_multiple_files = true;
-option java_package = "gov.nist.csd.pm.proto.v1.epp";
+option java_package = "gov.nist.ngac.pm.proto.v1.epp";
 
-package gov.nist.csd.pm.proto.v1.epp;
+package gov.nist.ngac.pm.proto.v1.epp;
 
 // EPPService provides methods to process events.
 service EPPService {
@@ -17,18 +17,18 @@ message EventContext {
   // The user that triggered the event. Either a user name or set of attributes.
   oneof user {
     string user_name = 1;
-    gov.nist.csd.pm.proto.v1.model.StringList user_attrs = 2;
+    gov.nist.ngac.pm.proto.v1.model.StringList user_attrs = 2;
   }
   // The process the user used to trigger the event.
   optional string process = 3;
   // The name of the policy operation.
   string op_name = 4;
   // The args related to the operation.
-  gov.nist.csd.pm.proto.v1.model.ValueMap args = 5;
+  gov.nist.ngac.pm.proto.v1.model.ValueMap args = 5;
 }
 
 // ProcessEventResponse is the response message for the processEvent rpc and
 // stores an optional ValueMap to include a result to the client.
 message ProcessEventResponse {
-  optional gov.nist.csd.pm.proto.v1.model.ValueMap result = 1;
+  optional gov.nist.ngac.pm.proto.v1.model.ValueMap result = 1;
 }
