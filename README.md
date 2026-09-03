@@ -6,7 +6,12 @@ Protocol buffers are Google’s language-neutral, platform-neutral, extensible m
 
 The generated Java code from these definitions can be found in the [policy-machine-core](https://github.com/usnistgov/policy-machine-core) repository.
 
-## Contents
+
+## Current Release Status
+
+This project is actively maintained and considered stable. No new major version is currently planned. Feedback and contributions are welcome via issues and pull requests.
+
+## APIs
 
 All definitions live under `v1/`, using package `gov.nist.ngac.pm.proto.v1.*`:
 
@@ -22,7 +27,6 @@ Compile the protos with `protoc` (or [`buf`](https://buf.build)), pointing the i
 ```sh
 protoc -I. --java_out=out v1/*.proto
 ```
-
 ## Versioning
 
 Definitions are namespaced by major version directory (`v1/`). Backwards-incompatible changes should be introduced in a new version directory (e.g. `v2/`) rather than modifying `v1` in place, so existing consumers are not broken.
